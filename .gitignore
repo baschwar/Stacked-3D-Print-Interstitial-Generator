@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.DS_Store
+
+# Generated model outputs can be large.
+stacked-output/
+interstitial-output/
+*.stl
+*.3mf
+*.gcode
+
+!.gitkeep
+!examples/**/*.stl
+examples/demo-frame.stl
