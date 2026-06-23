@@ -31,6 +31,8 @@ goal is a practical print.
   files.
 - `scripts/generate_interstitials.py` extracts interface faces from an
   already-stacked STL and creates a separate aligned interstitial STL.
+- `scripts/package_stack_interstitial_3mf.py` packages an aligned stack STL and
+  interstitial STL into one 3MF for easier slicer import.
 - `scripts/analyze_stackability.py` scores STL stackability, estimates bed-area
   savings, and reports separator interface quality before generating outputs.
 - `scripts/inspect_stl_z.py` reports Z levels and coplanar face counts for STL
@@ -62,6 +64,20 @@ python3 scripts/generate_interstitials.py "stacked-output/input - 8up stack 0.20
 Import the original stack and the generated interstitial STL together in your
 slicer. Keep them at the same origin, then assign the stack to the part material
 and the interstitial STL to a release/support material such as Bambu Support PLA.
+
+Package a stack STL and its matching interstitial STL into one 3MF for easier
+aligned import:
+
+```bash
+python3 scripts/package_stack_interstitial_3mf.py \
+  "stacked-output/input - 8up stack 0.20mm gap normal-then-flipped.stl" \
+  "interstitial-output/input - 8up stack 0.20mm gap normal-then-flipped - interstitials 0.20mm.stl" \
+  --output "combined-output/input - stack with interstitial.3mf"
+```
+
+The generated 3MF contains the stack and interstitial as separate aligned mesh
+objects. In the slicer, assign the stack object to the part material and the
+interstitial object to the release/support material.
 
 ## Examples
 
